@@ -5,15 +5,13 @@
 | Column             | Type                | Options                 |
 | ------------------ | ------------------- | ----------------------- |
 | nickname           | string              | null: false             |
-| email              | string              | null: false             |
-| password           | string              | null: false             |
+| email              | string              | unique: true            |
+| encrypted_password | string              | null: false             |
 | first_name         | string              | null: false             |
 | last_name          | string              | null: false             |
 | first_kana         | string              | null: false             |
 | last_kana          | string              | null: false             |
-| birth_year         | integer             | null: false             |
-| birth_month        | integer             | null: false             |
-| birth_day          | integer             | null: false             |
+| date               | date                | null: false             |
 
 ### Association
 
@@ -21,15 +19,12 @@
 - has_many :comments
 - has_many :orders
 
-## sending_destinations テーブル
+## addressesテーブル
 
 | Column             | Type                | Options                 |
 | ------------------ | ------------------- | ----------------------- |
-| approval_code      | string              | null: false             |
-| expiration_date    | string              | null: false             |
-| security_code      | string              | null: false             |
 | post_code          | string              | null: false             |
-| prefecture         | string              | null: false             |
+| prefecture_id      | string              | null: false             |
 | city               | string              | null: false             |
 | house_number       | string              | null: false             |
 | building_name      | string              |                         |
@@ -46,13 +41,12 @@
 | ------------------ | ------------------- | ----------------------- |
 | name               | string              | null: false             |
 | item_description   | text                | null: false             |
-| category           | integer             | null: false             |
-| item_condition     | integer             | null: false             |
-| postage_payer      | integer             | null: false             |
-| prefecture         | integer             | null: false             |
-| preparation_day    | integer             | null: false             |
+| category_id        | integer             | null: false             |
+| condition_id       | integer             | null: false             |
+| postage_payer_id   | integer             | null: false             |
+| prefecture_id      | integer             | null: false             |
+| preparation_day_id | integer             | null: false             |
 | price              | integer             | null: false             |
-| image              | integer             | null: false             |
 | user               | references          | foreign_key: true       |
 
 ### Association
@@ -85,4 +79,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :sending_destinations
+- has_one    :address
