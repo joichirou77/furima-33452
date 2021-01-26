@@ -33,14 +33,14 @@
 
 ### Association
 
-- belongs_to :order
+- belongs_to :orders
 
 ## items テーブル
 
 | Column             | Type                | Options                 |
 | ------------------ | ------------------- | ----------------------- |
 | name               | string              | null: false             |
-| item_description   | text                | null: false             |
+| description        | text                | null: false             |
 | category_id        | integer             | null: false             |
 | condition_id       | integer             | null: false             |
 | postage_payer_id   | integer             | null: false             |
@@ -51,9 +51,9 @@
 
 ### Association
 
-- belongs_to :user
+- belongs_to :users
 - has_many   :comments
-- has_one    :order
+- has_one    :orders
 
 ## comments テーブル
 
@@ -65,10 +65,10 @@
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
+- belongs_to :users
+- belongs_to :items
 
-## order テーブル
+## orders テーブル
 
 | Column             | Type                | Options                 |
 | ------------------ | ------------------- | ----------------------- |
