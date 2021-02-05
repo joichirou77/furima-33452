@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to　:category
+  belongs_to :category
   belongs_to :condition
   belongs_to :postage_payer
   belongs_to :prefecture
@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-　# 入力漏れNG
+
   with_options presence: true do
     validates :image
     validates :name
@@ -26,7 +26,7 @@ class Item < ApplicationRecord
   end
 
   # 半角数字のみOK
-  validates :price, fomat: { with: /\A[0-9]+\z/, message: 'half-width numbers' }
+  validates :price, format: { with: /\A[0-9]+\z/, message: 'half-width numbers' }
 
   # 入力金額$300~$9,999,999ならOK
   validates :price, Inclusion: { in: 300..9_999_999, message: 'outside the limits' }
