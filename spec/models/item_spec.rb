@@ -97,13 +97,25 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格が$300以下だと登録できない' do
-      @item.price= "299"
+      @item.price= 299
       @item.valid?
       expect(@item.errors.full_messages).to include("Price outside the limits")
     end
 
     it '価格が$9,999,999以上だと登録できない' do
-      @item.price= "100000000"
+      @item.price= 100000000
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price outside the limits")
+    end
+
+    it '価格が半角英数混合だと登録できない' do
+      @item.price= 'aaa1111'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price outside the limits")
+    end
+
+    it '価格が半角英語だけだと登録できない' do
+      @item.price= 'abcd'
       @item.valid?
       expect(@item.errors.full_messages).to include("Price outside the limits")
     end
