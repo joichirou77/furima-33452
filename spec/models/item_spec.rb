@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item)
   end
 
@@ -32,7 +31,7 @@ RSpec.describe Item, type: :model do
     end
 
     it 'カテゴリーが---だと登録できない' do
-      @item.category_id = "1"
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category select")
     end
@@ -44,7 +43,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '商品の状態が---どと登録できない' do
-      @item.condition_id = "1"
+      @item.condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition select")
     end
@@ -56,7 +55,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '配送料の負担が---だと登録できない' do
-      @item.postage_payer_id = "1"
+      @item.postage_payer_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Postage payer select")
     end
@@ -68,7 +67,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '配送元が---だと登録できない' do
-      @item.prefecture_id = "1"
+      @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture select")
     end
@@ -80,7 +79,7 @@ RSpec.describe Item, type: :model do
     end
 
     it '配送までの日数が---だと登録できない' do
-      @item.preparation_day_id= "1"
+      @item.preparation_day_id= 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Preparation day select")
     end
