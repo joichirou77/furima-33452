@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :item_user, only: [:show, :edit, :update, :destroy]
-  before_action :cheak_user, only: [:edit, :update]
+  before_action :cheak_user, only: [:edit, :update, :destroy]
   
   def index
     @items = Item.all.order(created_at: :desc)
