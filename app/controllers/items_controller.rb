@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :item_user, only: [:show, :edit, :update]
+  before_action :cheak_user, only: [:edit, :update]
   
   def index
     @items = Item.all.order(created_at: :desc)
@@ -23,9 +24,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @item.user_id 
-      redirect_to root_path
-    end
   end
   
   def update
@@ -43,5 +41,11 @@ class ItemsController < ApplicationController
 
   def item_user
     @item = Item.find(params[:id])
+  end
+
+  def cheak_user
+    if current_user.id != @item.user_id 
+      redirect_to root_path
+    end
   end
 end
