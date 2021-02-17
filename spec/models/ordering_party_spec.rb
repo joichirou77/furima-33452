@@ -61,6 +61,16 @@ RSpec.describe OrderingParty, type: :model do
       @ordering_party.valid?
       expect(@ordering_party.errors.full_messages).to include("Phone number input only number")
     end
+    it 'user_idが空だと登録できない' do
+      @ordering_party.user_id = ""
+      @ordering_party.valid?
+      expect(@ordering_party.errors.full_messages).to include("User can't be blank")
+    end
+    it 'item_idが空だと登録できない' do
+      @ordering_party.item_id = ""
+      @ordering_party.valid?
+      expect(@ordering_party.errors.full_messages).to include("Item can't be blank")
+    end
   end
   
 end
