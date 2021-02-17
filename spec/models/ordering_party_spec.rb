@@ -9,6 +9,10 @@ RSpec.describe OrderingParty, type: :model do
     it '全ての情報を入れると購入できる' do
       expect(@ordering_party).to be_valid
     end
+    it '建物名がなくても登録できる' do
+      @ordering_party.building_name = ""
+      expect(@ordering_party).to be_valid
+    end
   end
 
   context '商品購入ができない' do

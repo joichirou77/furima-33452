@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :item_user, only: [:index, :create]
-  before_action :cheak_user, only: [:index, :create]
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :cheak_user, only: [:index, :create]
 
 
   def index
