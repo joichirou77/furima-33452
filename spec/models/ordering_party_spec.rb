@@ -61,6 +61,16 @@ RSpec.describe OrderingParty, type: :model do
       @ordering_party.valid?
       expect(@ordering_party.errors.full_messages).to include("Phone number input only number")
     end
+    it '12桁以上だと購入できない' do
+      @ordering_party.phone_number = "080111111111"
+      @ordering_party.valid?
+      expect(@ordering_party.errors.full_messages).to include("Phone number input only number")
+    end
+    it '英数混合では購入できないこと' do
+      @ordering_party.phone_number = "080aser4444"
+      @ordering_party.valid?
+      expect(@ordering_party.errors.full_messages).to include("Phone number input only number")
+    end
     it 'user_idが空だと登録できない' do
       @ordering_party.user_id = ""
       @ordering_party.valid?
